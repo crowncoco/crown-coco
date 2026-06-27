@@ -65,11 +65,11 @@ export default function FeaturedProducts() {
                 </p>
 
                 <Button
-                  href={`/products/${product.slug}`}
-                  className="mt-7 w-full shadow-[0_14px_30px_rgba(11,90,61,0.18)]"
-                >
-                  View Product
-                </Button>
+  href={`/products/${product.slug}`}
+  className="mt-7 w-full shadow-[0_14px_30px_rgba(11,90,61,0.18)]"
+>
+  {product.button}
+</Button>
               </div>
             </Card>
           ))}

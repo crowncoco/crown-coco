@@ -25,14 +25,13 @@ export default function Hero() {
           </h1>
 
           <p className="mt-5 text-xl font-medium leading-8 text-[#6b4423] sm:text-2xl">
-            Premium Frozen Grated Coconut, Dry Fish, Dry Prawns & Fresh Cut
-            Vegetables.
+           Premium Frozen Grated Coconut crafted for freshness, with more quality food products arriving soon.
           </p>
 
           <p className="mt-5 max-w-xl text-base leading-8 text-[#4c5f56] sm:text-lg">
-            Hygienically prepared and carefully packed, our premium-quality
-            essentials bring reliable freshness, clean taste, and everyday
-            convenience to homes, kitchens, and bulk buyers.
+            Our premium frozen grated coconut is hygienically prepared and
+  carefully packed to preserve natural freshness, taste, and quality.
+  More premium food products will be added soon.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

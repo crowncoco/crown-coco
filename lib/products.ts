@@ -6,20 +6,52 @@ export type Product = {
   shortDescription: string;
   badge: string;
   available: boolean;
+  button: string;
+
+  weight: string;
+  ingredients: string;
+  idealFor: string[];
+  features: string[];
 };
 
 export const products: Product[] = [
-  {
-    slug: "frozen-grated-coconut",
-    name: "Frozen Grated Coconut",
-    image: "/images/products/grated-coconut.png",
-    description:
-      "Fresh frozen grated coconut hygienically prepared from carefully selected coconuts to preserve natural taste, aroma and freshness.",
-    shortDescription:
-      "Premium frozen grated coconut for everyday cooking.",
-    badge: "Best Seller",
-    available: true,
-  },
+  
+{
+  slug: "frozen-grated-coconut",
+  name: "Frozen Grated Coconut",
+
+  image: "/images/products/grated-coconut.png",
+
+  description:
+    "Freshly grated premium coconut, hygienically packed and immediately frozen to preserve its natural taste, aroma, and freshness.",
+
+  shortDescription:
+    "Premium frozen grated coconut for everyday cooking.",
+
+  badge: "Best Seller",
+
+  available: true,
+
+  button: "Order Now",
+
+  weight: "200 g",
+
+  ingredients: "100% Fresh Coconut",
+
+  idealFor: [
+    "Curries",
+    "Chutneys",
+    "Desserts",
+    "Everyday Cooking",
+  ],
+
+  features: [
+    "100% Fresh Coconut",
+    "No Added Preservatives",
+    "Hygienically Packed",
+    "Frozen for Freshness",
+  ],
+},
 
   {
     slug: "dry-fish",
@@ -31,6 +63,14 @@ export const products: Product[] = [
       "Traditional flavour with hygienic packaging.",
     badge: "Coming Soon",
     available: false,
+    button: "Coming Soon",
+    weight: "",
+
+ingredients: "",
+
+idealFor: [],
+
+features: [],
   },
 
   {
@@ -43,6 +83,14 @@ export const products: Product[] = [
       "Clean, rich flavour for authentic dishes.",
     badge: "Coming Soon",
     available: false,
+    button: "Coming Soon",
+    weight: "",
+
+ingredients: "",
+
+idealFor: [],
+
+features: [],
   },
 
   {
@@ -55,5 +103,13 @@ export const products: Product[] = [
       "Ready-to-cook vegetables prepared hygienically.",
     badge: "Coming Soon",
     available: false,
+    button: "Coming Soon",
+    weight: "",
+
+ingredients: "",
+
+idealFor: [],
+
+features: [],
   },
 ];
