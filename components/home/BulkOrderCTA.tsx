@@ -1,3 +1,4 @@
+import { site } from "@/lib/site";
 import Link from "next/link";
 import {
   Building2,
@@ -32,19 +33,19 @@ const features: Feature[] = [
 const actions: Action[] = [
   {
     label: "Request a Quote",
-    href: "/bulk-orders",
+    href: site.bulkWhatsapp,
     Icon: Quote,
     variant: "primary",
   },
   {
     label: "Call Us",
-    href: "tel:",
+    href: site.phoneLink,
     Icon: Phone,
     variant: "secondary",
   },
   {
     label: "WhatsApp Us",
-    href: "https://wa.me/",
+    href: site.whatsapp,
     Icon: MessageCircle,
     variant: "secondary",
   },
@@ -67,9 +68,7 @@ export default function BulkOrderCTA() {
             </h2>
 
             <p className="mt-5 max-w-2xl text-base leading-8 text-[#4c5f56] sm:text-lg">
-              We supply premium frozen grated coconut, dry fish, dry prawns and
-              fresh cut vegetables to restaurants, hotels, caterers,
-              supermarkets and retailers.
+              We currently supply premium frozen grated coconut and are expanding our product range with dry fish, dry prawns, and fresh cut vegetables. We welcome enquiries from restaurants, hotels, caterers, supermarkets, and retailers.
             </p>
 
             <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -104,8 +103,7 @@ export default function BulkOrderCTA() {
                   Get a custom quote for your business.
                 </h3>
                 <p className="mt-4 text-sm leading-6 text-[#4c5f56]">
-                  Share your requirement and our team will help with pricing,
-                  quantity and delivery options.
+                  Tell us your quantity and delivery location. We&apos;ll provide pricing, availability, and delivery options tailored to your business.
                 </p>
 
                 <div className="mt-7 grid gap-3">

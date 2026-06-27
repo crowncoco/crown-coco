@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { site } from "@/lib/site";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-
 const quickLinks = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
@@ -18,10 +18,26 @@ const products = [
 ];
 
 const contactItems = [
-  { label: "Phone", href: "tel:", Icon: Phone },
-  { label: "WhatsApp", href: "https://wa.me/", Icon: MessageCircle },
-  { label: "Email", href: "mailto:", Icon: Mail },
-  { label: "Location", href: "/contact", Icon: MapPin },
+  {
+    label: site.phone,
+    href: site.phoneLink,
+    Icon: Phone,
+  },
+  {
+    label: "WhatsApp",
+    href: site.whatsapp,
+    Icon: MessageCircle,
+  },
+  {
+    label: site.email,
+    href: site.emailLink,
+    Icon: Mail,
+  },
+  {
+   label: "Kacheripady, Palluruthy, Kochi - 682006",
+    href: "https://maps.google.com/?q=Kacheripady,Palluruthy,Kochi",
+    Icon: MapPin,
+  },
 ];
 
 export default function Footer() {
@@ -87,8 +103,10 @@ export default function Footer() {
 
                 return (
                   <Link
-                    key={item.label}
-                    href={item.href}
+  key={item.label}
+  href={item.href}
+  target={item.href.startsWith("http") ? "_blank" : undefined}
+  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                     className="group flex items-center gap-3 rounded-full border border-[#d9b45f]/25 bg-white px-4 py-3 text-sm font-semibold text-[#173f31] shadow-sm transition duration-300 hover:-translate-y-0.5 hover:text-[#0b5a3d] hover:shadow-[0_14px_34px_rgba(7,61,43,0.1)]"
                   >
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0b5a3d] text-white transition duration-300 group-hover:scale-105">
@@ -104,7 +122,7 @@ export default function Footer() {
 
         <div className="mt-12 border-t border-[#d9b45f]/25 py-6 text-center">
           <p className="text-sm font-medium text-[#4c5f56]">
-            &copy; 2026 CROWN COCO&reg;. All Rights Reserved.
+            &copy; {new Date().getFullYear()} CROWN COCO&reg;. All Rights Reserved.
           </p>
         </div>
       </div>
