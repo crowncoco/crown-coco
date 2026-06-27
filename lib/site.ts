@@ -8,7 +8,9 @@ export const site = {
   bulkWhatsapp:
     "https://wa.me/916282819640?text=Hi%20Crown%20Coco,%20I%20need%20a%20bulk%20quotation.",
 
-  email: "crowncoco2@gmail.com",
+ map: "https://maps.app.goo.gl/PwRAk63UECVazHCS7",
+ 
+    email: "crowncoco2@gmail.com",
   emailLink: "mailto:crowncoco2@gmail.com",
 
   address: [

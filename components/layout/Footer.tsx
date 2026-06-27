@@ -35,7 +35,7 @@ const contactItems = [
   },
   {
    label: "Kacheripady, Palluruthy, Kochi - 682006",
-    href: "https://maps.google.com/?q=Kacheripady,Palluruthy,Kochi",
+    href: site.map,
     Icon: MapPin,
   },
 ];
@@ -102,7 +102,7 @@ export default function Footer() {
                 const Icon = item.Icon;
 
                 return (
-                  <Link
+                  <a
   key={item.label}
   href={item.href}
   target={item.href.startsWith("http") ? "_blank" : undefined}
@@ -113,7 +113,7 @@ export default function Footer() {
                       <Icon className="h-4 w-4" aria-hidden="true" />
                     </span>
                     {item.label}
-                  </Link>
+                  </a>
                 );
               })}
             </div>

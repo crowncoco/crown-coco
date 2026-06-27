@@ -5,43 +5,8 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Image from "next/image";
 
-type Product = {
-  name: string;
-  description: string;
-  href: string;
-  image?: string;
-  initials: string;
-  badge?: string;
-};
-
-const products: Product[] = [
- {
-  name: "Frozen Grated Coconut",
-  description: "Fresh frozen grated coconut prepared hygienically.",
-  href: "/products/frozen-grated-coconut",
-  image: "/images/products/grated-coconut.png",
-  initials: "FC",
-  badge: "Best Seller",
-},
-  {
-    name: "Dry Fish",
-    description: "Carefully selected dry fish packed for rich coastal flavor.",
-    href: "/products/dry-fish",
-    initials: "DF",
-  },
-  {
-    name: "Dry Prawns",
-    description: "Premium dry prawns prepared for clean taste and convenience.",
-    href: "/products/dry-prawns",
-    initials: "DP",
-  },
-  {
-    name: "Fresh Cut Vegetables",
-    description: "Ready-to-cook vegetables cut fresh for everyday kitchens.",
-    href: "/products/fresh-cut-vegetables",
-    initials: "FV",
-  },
-];
+import { products, type Product } from "@/lib/products";
+ 
 
 function ProductVisual({ product }: { product: Product }) {
   if (product.image) {
@@ -59,7 +24,11 @@ function ProductVisual({ product }: { product: Product }) {
   return (
   <div className="flex h-full w-full items-center justify-center bg-[#fffaf0] p-6">
     <div className="flex h-28 w-28 items-center justify-center rounded-full border border-[#d9b45f]/45 bg-white text-3xl font-bold text-[#0b5a3d] shadow-[0_16px_38px_rgba(7,61,43,0.1)] transition duration-500 ease-out group-hover:scale-105">
-      {product.initials}
+      {product.name
+  .split(" ")
+  .map((word) => word[0])
+  .join("")
+  .slice(0, 2)}
     </div>
   </div>
 );
@@ -85,9 +54,7 @@ export default function FeaturedProducts() {
               </div>
 
               <div className="flex flex-1 flex-col p-6 sm:p-7">
-                {product.badge && (
-  <Badge>{product.badge}</Badge>
-)}
+               <Badge>{product.badge}</Badge>
 
                 <h3 className="mt-5 text-xl font-bold leading-snug text-[#073d2b]">
                   {product.name}
@@ -98,7 +65,7 @@ export default function FeaturedProducts() {
                 </p>
 
                 <Button
-                  href={product.href}
+                  href={`/products/${product.slug}`}
                   className="mt-7 w-full shadow-[0_14px_30px_rgba(11,90,61,0.18)]"
                 >
                   View Product
