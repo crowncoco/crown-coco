@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { ShoppingCart } from "lucide-react";
+import { useCart } from "@/lib/cart";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -13,6 +15,12 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const items = useCart((state) => state.items);
+
+const cartCount = items.reduce(
+  (sum, item) => sum + item.quantity,
+  0
+);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -37,7 +45,19 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <button className="h-11 w-11 rounded-full border bg-white text-[#073d2b] transition hover:-translate-y-0.5" aria-label="Search">⌕</button>
-          <button className="h-11 w-11 rounded-full border bg-white text-[#073d2b] transition hover:-translate-y-0.5" aria-label="Shopping cart">🛒</button>
+          <Link
+  href="/cart"
+  className="relative flex h-11 w-11 items-center justify-center rounded-full border bg-white text-[#073d2b] transition hover:-translate-y-0.5"
+  aria-label="Shopping cart"
+>
+  <ShoppingCart className="h-5 w-5" />
+
+  {cartCount > 0 && (
+    <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#0b5a3d] text-[10px] font-bold text-white">
+      {cartCount}
+    </span>
+  )}
+</Link>
           <Link href="https://wa.me/" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold text-[#0b5a3d] transition hover:-translate-y-0.5 hover:bg-[#effaf3]">
             WhatsApp
           </Link>

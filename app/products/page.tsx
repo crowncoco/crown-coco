@@ -1,17 +1,11 @@
-import Image from "next/image";
+"use client";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-
-type Product = {
-  name: string;
-  description: string;
-  weight: string;
-  href: string;
-  initials: string;
-  image?: string;
-  badge?: string;
-};
+import { useCart } from "@/lib/cart";
+import { products } from "@/lib/products";
+import type { Product } from "@/lib/products";
 
 const categories = [
   "All",
@@ -19,39 +13,6 @@ const categories = [
   "Dry Fish",
   "Dry Prawns",
   "Vegetables",
-];
-
-const products: Product[] = [
-  {
-    name: "Frozen Grated Coconut",
-    description: "Fresh frozen grated coconut.",
-    weight: "200 g",
-    href: "/products/frozen-grated-coconut",
-    initials: "FC",
-    image: "/images/products/grated-coconut.png",
-    badge: "Best Seller",
-  },
-  {
-    name: "Dry Fish",
-    description: "Carefully selected dry fish packed for rich coastal flavor.",
-    weight: "250 g",
-    href: "/products/dry-fish",
-    initials: "DF",
-  },
-  {
-    name: "Dry Prawns",
-    description: "Premium dry prawns prepared for clean taste and convenience.",
-    weight: "250 g",
-    href: "/products/dry-prawns",
-    initials: "DP",
-  },
-  {
-    name: "Fresh Cut Vegetables",
-    description: "Ready-to-cook vegetables cut fresh for everyday kitchens.",
-    weight: "500 g",
-    href: "/products/fresh-cut-vegetables",
-    initials: "FV",
-  },
 ];
 
 function ProductImage({ product }: { product: Product }) {
@@ -71,13 +32,14 @@ function ProductImage({ product }: { product: Product }) {
   return (
     <div className="flex h-full w-full items-center justify-center bg-[#fffaf0] p-6">
       <div className="flex h-28 w-28 items-center justify-center rounded-full border border-[#d9b45f]/45 bg-white text-3xl font-bold text-[#0b5a3d] shadow-[0_16px_38px_rgba(7,61,43,0.1)] transition duration-500 group-hover:scale-105">
-        {product.initials}
+       Coming Soon 
       </div>
     </div>
   );
 }
 
 export default function ProductsPage() {
+  const addItem = useCart((state) => state.addItem);
   return (
     <main className="min-h-screen bg-[#f8f5ee]">
       <Navbar />
@@ -144,13 +106,22 @@ export default function ProductsPage() {
 
                   <div className="mt-6 grid gap-3">
                     <Link
-                      href={product.href}
+                      href={`/products/${product.slug}`}
                       className="inline-flex items-center justify-center rounded-full border border-[#d9b45f]/55 bg-[#fffaf0] px-5 py-3 text-sm font-semibold text-[#073d2b] shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-white"
                     >
                       View Details
                     </Link>
                     <button
                       type="button"
+                      onClick={() =>
+  addItem({
+   slug: product.slug,
+    name: product.name,
+    image: product.image ?? "",
+    weight: product.weight,
+    quantity: 1,
+  })
+}
                       className="inline-flex items-center justify-center rounded-full bg-[#0b5a3d] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(11,90,61,0.18)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#073d2b]"
                     >
                       Add to Cart
