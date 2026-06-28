@@ -2,7 +2,9 @@ import { notFound } from "next/navigation";
 import ProductDetails from "@/components/products/ProductDetails";
 import ProductHero from "@/components/products/ProductHero";
 import { products } from "@/lib/products";
-
+import ProductProcess from "@/components/products/ProductProcess";
+import BulkOrderCTA from "@/components/products/BulkOrderCTA";
+import RelatedProducts from "@/components/products/RelatedProducts";
 
 type PageProps = {
   params: Promise<{
@@ -27,6 +29,9 @@ export default async function ProductPage({ params }: PageProps) {
       <ProductHero product={product} />
 
       <ProductDetails product={product} />
+      <ProductProcess />
+      <BulkOrderCTA />
+      <RelatedProducts />
     </>
   );
 }
