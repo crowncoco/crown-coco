@@ -5,6 +5,7 @@ import { products } from "@/lib/products";
 import ProductProcess from "@/components/products/ProductProcess";
 import BulkOrderCTA from "@/components/products/BulkOrderCTA";
 import RelatedProducts from "@/components/products/RelatedProducts";
+import ProductFAQ from "@/components/products/ProductFAQ";
 
 type PageProps = {
   params: Promise<{
@@ -32,6 +33,7 @@ export default async function ProductPage({ params }: PageProps) {
       <ProductProcess />
       <BulkOrderCTA />
       <RelatedProducts />
+       <ProductFAQ />
     </>
   );
 }
