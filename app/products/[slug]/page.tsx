@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+
 import ProductDetails from "@/components/products/ProductDetails";
 import ProductHero from "@/components/products/ProductHero";
 import { products } from "@/lib/products";
@@ -12,7 +14,30 @@ type PageProps = {
     slug: string;
   }>;
 };
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
 
+  const product = products.find((p) => p.slug === slug);
+
+  if (!product) {
+    return {
+      title: "Product Not Found | CROWN COCO®",
+    };
+  }
+
+  return {
+    title: `${product.name} | CROWN COCO®`,
+    description: product.shortDescription,
+
+    openGraph: {
+      title: `${product.name} | CROWN COCO®`,
+      description: product.shortDescription,
+      images: [product.image],
+    },
+  };
+}
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
 

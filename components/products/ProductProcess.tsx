@@ -1,22 +1,33 @@
+import {
+  Leaf,
+  CookingPot,
+  Package,
+  Snowflake,
+} from "lucide-react";
+
 export default function ProductProcess() {
-  const steps = [
-    {
-      title: "Fresh Coconut",
-      description: "Carefully selected fresh coconuts.",
-    },
-    {
-      title: "Freshly Grated",
-      description: "Grated immediately after preparation.",
-    },
-    {
-      title: "Hygienically Packed",
-      description: "Packed under hygienic conditions.",
-    },
-    {
-      title: "Immediately Frozen",
-      description: "Frozen quickly to help preserve freshness.",
-    },
-  ];
+ const steps = [
+  {
+    title: "Fresh Coconut",
+    description: "Carefully selected fresh coconuts.",
+    icon: Leaf,
+  },
+  {
+    title: "Freshly Grated",
+    description: "Grated immediately after preparation.",
+    icon: CookingPot,
+  },
+  {
+    title: "Hygienically Packed",
+    description: "Packed under hygienic conditions.",
+    icon: Package,
+  },
+  {
+    title: "Immediately Frozen",
+    description: "Frozen quickly to help preserve freshness.",
+    icon: Snowflake,
+  },
+];
 
   return (
     <section className="bg-[#f8f5ee] py-20">

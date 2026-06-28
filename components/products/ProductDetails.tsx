@@ -1,4 +1,5 @@
 import type { Product } from "@/lib/products";
+import { Package, Leaf, CheckCircle, Utensils } from "lucide-react";
 
 type ProductDetailsProps = {
   product: Product;
@@ -7,16 +8,18 @@ type ProductDetailsProps = {
 export default function ProductDetails({
   product,
 }: ProductDetailsProps) {
-  const detailCards = [
-    {
-      label: "Net Weight",
-      value: product.weight,
-    },
-    {
-      label: "Ingredients",
-      value: product.ingredients,
-    },
-  ];
+ const detailCards = [
+  {
+    label: "Net Weight",
+    value: product.weight,
+    icon: Package,
+  },
+  {
+    label: "Ingredients",
+    value: product.ingredients,
+    icon: Leaf,
+  },
+];
 
   const infoCard =
     "rounded-2xl border border-[#d9b45f]/30 bg-[#f8f5ee] p-6";
@@ -32,8 +35,11 @@ export default function ProductDetails({
         </h2>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
-          {detailCards.map(({ label, value }) => (
+          {detailCards.map(({ label, value, icon: Icon }) => (
             <div key={label} className={infoCard}>
+                <div className="mb-4 inline-flex rounded-xl bg-[#0b5a3d]/10 p-3">
+  <Icon className="h-6 w-6 text-[#0b5a3d]" />
+</div>
               <h3 className="text-sm font-semibold uppercase tracking-wide text-[#0b5a3d]">
                 {label}
               </h3>
@@ -54,7 +60,10 @@ export default function ProductDetails({
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {product.features.map((feature) => (
                 <div key={feature} className={gridCard}>
-                  {feature}
+                 <div className="flex items-center gap-3">
+  <CheckCircle className="h-5 w-5 text-[#0b5a3d]" />
+  <span>{feature}</span>
+</div>
                 </div>
               ))}
             </div>
@@ -70,7 +79,10 @@ export default function ProductDetails({
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {product.idealFor.map((item) => (
                 <div key={item} className={gridCard}>
-                  {item}
+                  <div className="flex items-center gap-3">
+  <Utensils className="h-5 w-5 text-[#0b5a3d]" />
+  <span>{item}</span>
+</div>
                 </div>
               ))}
             </div>
