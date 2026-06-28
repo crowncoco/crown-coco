@@ -38,6 +38,11 @@ export async function generateMetadata({
     },
   };
 }
+export function generateStaticParams() {
+  return products.map((product) => ({
+    slug: product.slug,
+  }));
+}
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
 

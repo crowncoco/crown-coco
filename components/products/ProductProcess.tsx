@@ -48,21 +48,21 @@ export default function ProductProcess() {
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step, index) => (
+          {steps.map(({ title, description, icon: Icon }) => (
             <div
-              key={step.title}
+              key={title}
               className="rounded-3xl border border-[#d9b45f]/30 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-[#0b5a3d] font-bold text-white">
-                {index + 1}
-              </div>
+              <div className="mb-6 inline-flex rounded-2xl bg-[#0b5a3d]/10 p-4">
+  <Icon className="h-7 w-7 text-[#0b5a3d]" />
+</div>
 
               <h3 className="text-xl font-bold text-[#073d2b]">
-                {step.title}
+                {title}
               </h3>
 
               <p className="mt-3 leading-7 text-[#4c5f56]">
-                {step.description}
+                {description}
               </p>
             </div>
           ))}

@@ -1,5 +1,12 @@
 import Button from "@/components/ui/Button";
 import { site } from "@/lib/site";
+import {
+  Building2,
+  Hotel,
+  ShoppingBag,
+  Store,
+  UtensilsCrossed,
+} from "lucide-react";
 
 export default function BulkOrderCTA() {
   return (
@@ -21,18 +28,21 @@ packed Frozen Grated Coconut in bulk quantities.
           </p>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
-            {[
-              "Restaurants",
-              "Hotels",
-              "Catering",
-              "Retail Shops",
-              "Wholesale",
-            ].map((item) => (
+           {[
+  { label: "Restaurants", icon: UtensilsCrossed },
+  { label: "Hotels", icon: Hotel },
+  { label: "Catering", icon: ShoppingBag },
+  { label: "Retail Shops", icon: Store },
+  { label: "Wholesale", icon: Building2 },
+].map(({ label, icon: Icon }) => (
               <span
-                key={item}
+                key={label}
                 className="rounded-full bg-[#f8f5ee] px-5 py-2 font-medium text-[#073d2b]"
               >
-                {item}
+                <div className="flex items-center gap-2">
+  <Icon className="h-4 w-4" />
+  <span>{label}</span>
+</div>
               </span>
             ))}
           </div>

@@ -1,4 +1,5 @@
-import Link from "next/link";
+import Image from "next/image";
+import Button from "@/components/ui/Button";
 import { products } from "@/lib/products";
 
 export default function RelatedProducts() {
@@ -25,9 +26,21 @@ export default function RelatedProducts() {
               key={product.slug}
               className="rounded-3xl border border-[#d9b45f]/30 bg-[#f8f5ee] p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="flex h-48 items-center justify-center rounded-2xl bg-white text-center text-xl font-bold text-[#073d2b]">
-                {product.name}
-              </div>
+              <div className="flex h-48 items-center justify-center rounded-2xl bg-white">
+  {product.image ? (
+    <Image
+      src={product.image}
+      alt={product.name}
+      width={180}
+      height={180}
+      className="object-contain"
+    />
+  ) : (
+    <span className="text-center text-xl font-bold text-[#073d2b]">
+      {product.name}
+    </span>
+  )}
+</div>
 
               <h3 className="mt-6 text-2xl font-bold text-[#073d2b]">
                 {product.name}
@@ -43,12 +56,12 @@ export default function RelatedProducts() {
 
               {product.available && (
                 <div className="mt-6">
-                  <Link
-                    href={`/products/${product.slug}`}
-                    className="font-semibold text-[#0b5a3d]"
-                  >
-                    View Product →
-                  </Link>
+                  <Button
+  href={`/products/${product.slug}`}
+  variant="outline"
+>
+  View Product
+</Button>
                 </div>
               )}
             </div>
