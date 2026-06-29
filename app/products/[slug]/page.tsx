@@ -23,21 +23,41 @@ export async function generateMetadata({
 
   if (!product) {
     return {
-      title: "Product Not Found | CROWN COCO®",
+      title: "Product Not Found",
+      description: "The requested product could not be found.",
     };
   }
 
-  return {
-    title: `${product.name} | CROWN COCO®`,
-    description: product.shortDescription,
+  const productUrl = `/products/${product.slug}`;
+  const image = product.image || "/og-image.png";
 
+  return {
+    title: product.name,
+    description: product.shortDescription,
+    alternates: {
+      canonical: productUrl,
+    },
     openGraph: {
-      title: `${product.name} | CROWN COCO®`,
+      title: product.name,
       description: product.shortDescription,
-      images: [product.image],
+      url: productUrl,
+      type: "website",
+      images: [
+        {
+          url: image,
+          alt: product.name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.name,
+      description: product.shortDescription,
+      images: [image],
     },
   };
 }
+
 export function generateStaticParams() {
   return products.map((product) => ({
     slug: product.slug,

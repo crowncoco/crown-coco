@@ -8,6 +8,8 @@ export type Product = {
   available: boolean;
   button: string;
 
+  category: string;
+
   weight: string;
   ingredients: string;
   idealFor: string[];
@@ -33,6 +35,7 @@ export const products: Product[] = [
   available: true,
 
   button: "Order Now",
+  category: "Frozen Coconut",
 
   weight: "200 g",
 
@@ -64,6 +67,7 @@ export const products: Product[] = [
     badge: "Coming Soon",
     available: false,
     button: "Coming Soon",
+    category: "Dry Fish",
     weight: "",
 
 ingredients: "",
@@ -84,6 +88,7 @@ features: [],
     badge: "Coming Soon",
     available: false,
     button: "Coming Soon",
+    category: "Dry Prawns",
     weight: "",
 
 ingredients: "",
@@ -104,6 +109,7 @@ features: [],
     badge: "Coming Soon",
     available: false,
     button: "Coming Soon",
+    category: "Vegetables",
     weight: "",
 
 ingredients: "",

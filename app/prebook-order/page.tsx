@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PrebookForm from "@/components/prebook/PrebookForm";
@@ -23,7 +24,9 @@ export default function PrebookOrderPage() {
             availability and delivery details.
           </p>
 
-         <PrebookForm />
+         <Suspense fallback={null}>
+  <PrebookForm />
+</Suspense>
         </div>
       </main>
 

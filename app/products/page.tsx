@@ -1,4 +1,6 @@
 "use client";
+
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
@@ -40,6 +42,25 @@ function ProductImage({ product }: { product: Product }) {
 
 export default function ProductsPage() {
   const addItem = useCart((state) => state.addItem);
+  const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+const filteredProducts = useMemo(() => {
+  const query = search.trim().toLowerCase();
+
+  return products.filter((product) => {
+    const matchesSearch =
+      query === "" ||
+      product.name.toLowerCase().includes(query) ||
+      product.description.toLowerCase().includes(query);
+
+    const matchesCategory =
+      selectedCategory === "All" ||
+      product.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+}, [search, selectedCategory]);
   return (
     <main className="min-h-screen bg-[#f8f5ee]">
       <Navbar />
@@ -60,12 +81,13 @@ export default function ProductsPage() {
           </div>
 
           <div className="mt-10 flex flex-wrap justify-center gap-3">
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               <button
-                key={category}
-                type="button"
+  key={category}
+  type="button"
+  onClick={() => setSelectedCategory(category)}
                 className={`rounded-full border px-5 py-3 text-sm font-semibold shadow-sm transition duration-300 hover:-translate-y-0.5 ${
-                  index === 0
+                  selectedCategory === category
                     ? "border-[#0b5a3d] bg-[#0b5a3d] text-white shadow-[0_14px_30px_rgba(11,90,61,0.18)]"
                     : "border-[#d9b45f]/45 bg-white text-[#173f31] hover:bg-[#fffaf0] hover:text-[#0b5a3d]"
                 }`}
@@ -74,9 +96,18 @@ export default function ProductsPage() {
               </button>
             ))}
           </div>
-
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {products.map((product) => (
+<div className="mx-auto mt-8 max-w-xl">
+  <input
+    type="search"
+    placeholder="Search products..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className="w-full rounded-full border border-[#d9b45f]/40 bg-white px-5 py-3 text-[#073d2b] shadow-sm outline-none transition focus:border-[#0b5a3d] focus:ring-2 focus:ring-[#0b5a3d]/10"
+  />
+</div>
+          {filteredProducts.length > 0 ? (
+  <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {filteredProducts.map((product) => (
               <article
   key={product.name}
   className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-[#d9b45f]/30 bg-white shadow-[0_18px_48px_rgba(7,61,43,0.1)] transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_32px_80px_rgba(7,61,43,0.18)]"
@@ -129,8 +160,19 @@ export default function ProductsPage() {
                   </div>
                 </div>
               </article>
-            ))}
+                      ))}
           </div>
+) : (
+  <div className="mt-16 rounded-[1.5rem] border border-dashed border-[#d9b45f]/40 bg-white p-12 text-center shadow-sm">
+    <h3 className="text-2xl font-bold text-[#073d2b]">
+      No products found
+    </h3>
+
+    <p className="mt-3 text-[#4c5f56]">
+      Try another search or category.
+    </p>
+  </div>
+)}
         </div>
       </section>
 

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/lib/cart";
+import { site } from "@/lib/site";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -39,21 +40,27 @@ const cartCount = items.reduce(
 
        <div className="hidden items-center gap-8 lg:flex">
   {navLinks.map((link) => (
-    <Link
-      key={link.href}
-      href={link.href}
-      className={`relative text-sm font-medium transition duration-300 after:absolute after:-bottom-2 after:left-0 after:h-px after:bg-[#c49a3a] after:transition-all after:duration-300 ${
-        pathname === link.href
-          ? "text-[#0b5a3d] after:w-full"
-          : "text-[#173f31] after:w-0 hover:text-[#0b5a3d] hover:after:w-full"
-      }`}
-    >
+   <Link
+  key={link.href}
+  href={link.href}
+  aria-current={pathname === link.href ? "page" : undefined}
+  className={`relative text-sm font-medium transition duration-300 after:absolute after:-bottom-2 after:left-0 after:h-px after:bg-[#c49a3a] after:transition-all after:duration-300 ${
+    pathname === link.href
+      ? "text-[#0b5a3d] after:w-full"
+      : "text-[#173f31] after:w-0 hover:text-[#0b5a3d] hover:after:w-full"
+  }`}
+>
       {link.label}
     </Link>
   ))}
 </div>
         <div className="hidden items-center gap-3 lg:flex">
-          <button className="h-11 w-11 rounded-full border bg-white text-[#073d2b] transition hover:-translate-y-0.5" aria-label="Search">⌕</button>
+         <button
+  type="button"
+  className="h-11 w-11 rounded-full border bg-white text-[#073d2b] transition hover:-translate-y-0.5"
+  aria-label="Search"
+>
+            ⌕</button>
           <Link
   href="/cart"
   className="relative flex h-11 w-11 items-center justify-center rounded-full border bg-white text-[#073d2b] transition hover:-translate-y-0.5"
@@ -67,7 +74,10 @@ const cartCount = items.reduce(
     </span>
   )}
 </Link>
-          <Link href="https://wa.me/" className="rounded-full border bg-white px-4 py-2 text-sm font-semibold text-[#0b5a3d] transition hover:-translate-y-0.5 hover:bg-[#effaf3]">
+          <Link
+  href={site.whatsapp}
+  className="rounded-full border bg-white px-4 py-2 text-sm font-semibold text-[#0b5a3d] transition hover:-translate-y-0.5 hover:bg-[#effaf3]"
+>
             WhatsApp
           </Link>
           <Link href="/prebook-order" className="rounded-full bg-[#0b5a3d] px-5 py-2 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-[#073d2b]">
@@ -76,7 +86,9 @@ const cartCount = items.reduce(
         </div>
 
         <button
-          className="h-11 w-11 rounded-full border bg-white text-[#073d2b] lg:hidden"
+  type="button"
+  aria-controls="mobile-navigation"
+  className="h-11 w-11 rounded-full border bg-white text-[#073d2b] lg:hidden"
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen((open) => !open)}
@@ -85,13 +97,19 @@ const cartCount = items.reduce(
         </button>
       </nav>
 
-      <div className={`overflow-hidden border-t border-[#d9b45f]/20 bg-[#fffaf0] transition-all duration-300 lg:hidden ${isMenuOpen ? "max-h-[520px] opacity-100" : "max-h-0 opacity-0"}`}>
+      <div
+  id="mobile-navigation"
+  className={`overflow-hidden border-t border-[#d9b45f]/20 bg-[#fffaf0] transition-all duration-300 lg:hidden ${
+    isMenuOpen ? "max-h-[520px] opacity-100" : "max-h-0 opacity-0"
+  }`}
+>
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6">
           {navLinks.map((link) => (
   <Link
-    key={link.href}
-    href={link.href}
-    onClick={() => setIsMenuOpen(false)}
+  key={link.href}
+  href={link.href}
+  aria-current={pathname === link.href ? "page" : undefined}
+  onClick={() => setIsMenuOpen(false)}
     className={`rounded-md px-3 py-3 font-medium transition ${
       pathname === link.href
         ? "bg-[#0b5a3d] text-white"
@@ -102,7 +120,10 @@ const cartCount = items.reduce(
   </Link>
 ))}
           <div className="grid gap-3 pt-3 sm:grid-cols-2">
-            <Link href="https://wa.me/" className="rounded-full border bg-white px-4 py-3 text-center font-semibold text-[#0b5a3d]">WhatsApp</Link>
+            <Link
+  href={site.whatsapp}
+  className="rounded-full border bg-white px-4 py-3 text-center font-semibold text-[#0b5a3d]"
+>WhatsApp</Link>
             <Link href="/prebook-order" className="rounded-full bg-[#0b5a3d] px-4 py-3 text-center font-semibold text-white">Prebook Order</Link>
           </div>
         </div>
