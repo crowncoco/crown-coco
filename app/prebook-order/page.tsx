@@ -1,7 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Button from "@/components/ui/Button";
-import { site } from "@/lib/site";
+import PrebookForm from "@/components/prebook/PrebookForm";
+
 
 export default function PrebookOrderPage() {
   return (
@@ -23,13 +23,7 @@ export default function PrebookOrderPage() {
             availability and delivery details.
           </p>
 
-          <div className="mt-10">
-            <Button
-              href={`${site.whatsapp}?text=Hi%20CROWN%20COCO,%20I%20would%20like%20to%20prebook%20an%20order.`}
-            >
-              Prebook on WhatsApp
-            </Button>
-          </div>
+         <PrebookForm />
         </div>
       </main>
 

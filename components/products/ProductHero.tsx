@@ -78,15 +78,19 @@ export default function ProductHero({ product }: ProductHeroProps) {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <Button href={site.whatsapp}>
-              {product.button}
-            </Button>
+         <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+  <Button href={site.whatsapp}>
+    {product.button}
+  </Button>
 
-            <Button href={site.phoneLink} variant="outline">
-              Call Now
-            </Button>
-          </div>
+  <Button href={`/prebook-order?product=${product.slug}`} variant="secondary">
+    Prebook
+  </Button>
+
+  <Button href={site.phoneLink} variant="outline">
+    Call Now
+  </Button>
+</div>
         </div>
       </div>
     </section>

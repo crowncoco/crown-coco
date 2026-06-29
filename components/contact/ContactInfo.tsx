@@ -18,7 +18,7 @@ export default function ContactInfo() {
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {/* Phone */}
 
-          <div className="rounded-3xl border border-[#d9b45f]/30 bg-[#f8f5ee] p-8">
+          <div className="rounded-3xl border border-[#d9b45f]/30 bg-[#f8f5ee] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
             <div className="mb-5 inline-flex rounded-2xl bg-[#0b5a3d]/10 p-4">
               <Phone className="h-7 w-7 text-[#0b5a3d]" />
             </div>
@@ -37,7 +37,7 @@ export default function ContactInfo() {
 
           {/* Email */}
 
-          <div className="rounded-3xl border border-[#d9b45f]/30 bg-[#f8f5ee] p-8">
+          <div className="rounded-3xl border border-[#d9b45f]/30 bg-[#f8f5ee] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
             <div className="mb-5 inline-flex rounded-2xl bg-[#0b5a3d]/10 p-4">
               <Mail className="h-7 w-7 text-[#0b5a3d]" />
             </div>
@@ -56,7 +56,7 @@ export default function ContactInfo() {
 
           {/* Address */}
 
-          <div className="rounded-3xl border border-[#d9b45f]/30 bg-[#f8f5ee] p-8">
+          <div className="rounded-3xl border border-[#d9b45f]/30 bg-[#f8f5ee] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl">
             <div className="mb-5 inline-flex rounded-2xl bg-[#0b5a3d]/10 p-4">
               <MapPin className="h-7 w-7 text-[#0b5a3d]" />
             </div>

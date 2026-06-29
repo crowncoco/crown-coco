@@ -24,14 +24,14 @@ function ProductImage({ product }: { product: Product }) {
         width={460}
         height={340}
         priority
-        className="h-full w-full object-contain p-6 transition duration-500 group-hover:scale-105"
+        className="h-full w-full object-contain p-6 transition-all duration-700 ease-out group-hover:scale-110 group-hover:rotate-1"
       />
     );
   }
 
   return (
     <div className="flex h-full w-full items-center justify-center bg-[#fffaf0] p-6">
-      <div className="flex h-28 w-28 items-center justify-center rounded-full border border-[#d9b45f]/45 bg-white text-3xl font-bold text-[#0b5a3d] shadow-[0_16px_38px_rgba(7,61,43,0.1)] transition duration-500 group-hover:scale-105">
+      <div className="flex h-28 w-28 items-center justify-center rounded-full border border-[#d9b45f]/45 bg-white text-3xl font-bold text-[#0b5a3d] shadow-[0_16px_38px_rgba(7,61,43,0.1)] transition-all duration-700 ease-out group-hover:scale-110">
        Coming Soon 
       </div>
     </div>
@@ -78,9 +78,9 @@ export default function ProductsPage() {
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {products.map((product) => (
               <article
-                key={product.name}
-                className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-[#d9b45f]/30 bg-white shadow-[0_18px_48px_rgba(7,61,43,0.1)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_70px_rgba(7,61,43,0.16)]"
-              >
+  key={product.name}
+  className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-[#d9b45f]/30 bg-white shadow-[0_18px_48px_rgba(7,61,43,0.1)] transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_32px_80px_rgba(7,61,43,0.18)]"
+>
                 <div className="relative h-56 bg-[#fffaf0]">
                   {product.badge ? (
                     <span className="absolute left-4 top-4 z-10 rounded-full bg-[#c49a3a] px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-sm">

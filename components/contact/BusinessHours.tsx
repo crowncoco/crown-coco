@@ -28,7 +28,7 @@ export default function BusinessHours() {
           </h2>
         </div>
 
-        <div className="mt-12 overflow-hidden rounded-3xl border border-[#d9b45f]/30">
+        <div className="mt-12 overflow-hidden rounded-3xl border border-[#d9b45f]/30 shadow-lg">
           {hours.map(({ day, time }) => (
             <div
               key={day}

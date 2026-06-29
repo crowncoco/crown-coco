@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/lib/cart";
 
@@ -22,6 +23,7 @@ const cartCount = items.reduce(
   0
 );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#d9b45f]/25 bg-[#fffaf0]/95 shadow-[0_12px_40px_rgba(5,54,38,0.08)] backdrop-blur-xl">
@@ -35,14 +37,21 @@ const cartCount = items.reduce(
           </span>
         </Link>
 
-        <div className="hidden items-center gap-8 lg:flex">
-          {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="relative text-sm font-medium text-[#173f31] transition duration-300 after:absolute after:-bottom-2 after:left-0 after:h-px after:w-0 after:bg-[#c49a3a] after:transition-all after:duration-300 hover:text-[#0b5a3d] hover:after:w-full">
-              {link.label}
-            </Link>
-          ))}
-        </div>
-
+       <div className="hidden items-center gap-8 lg:flex">
+  {navLinks.map((link) => (
+    <Link
+      key={link.href}
+      href={link.href}
+      className={`relative text-sm font-medium transition duration-300 after:absolute after:-bottom-2 after:left-0 after:h-px after:bg-[#c49a3a] after:transition-all after:duration-300 ${
+        pathname === link.href
+          ? "text-[#0b5a3d] after:w-full"
+          : "text-[#173f31] after:w-0 hover:text-[#0b5a3d] hover:after:w-full"
+      }`}
+    >
+      {link.label}
+    </Link>
+  ))}
+</div>
         <div className="hidden items-center gap-3 lg:flex">
           <button className="h-11 w-11 rounded-full border bg-white text-[#073d2b] transition hover:-translate-y-0.5" aria-label="Search">⌕</button>
           <Link
@@ -79,10 +88,19 @@ const cartCount = items.reduce(
       <div className={`overflow-hidden border-t border-[#d9b45f]/20 bg-[#fffaf0] transition-all duration-300 lg:hidden ${isMenuOpen ? "max-h-[520px] opacity-100" : "max-h-0 opacity-0"}`}>
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="rounded-md px-3 py-3 font-medium text-[#173f31] transition hover:bg-white hover:text-[#0b5a3d]" onClick={() => setIsMenuOpen(false)}>
-              {link.label}
-            </Link>
-          ))}
+  <Link
+    key={link.href}
+    href={link.href}
+    onClick={() => setIsMenuOpen(false)}
+    className={`rounded-md px-3 py-3 font-medium transition ${
+      pathname === link.href
+        ? "bg-[#0b5a3d] text-white"
+        : "text-[#173f31] hover:bg-white hover:text-[#0b5a3d]"
+    }`}
+  >
+    {link.label}
+  </Link>
+))}
           <div className="grid gap-3 pt-3 sm:grid-cols-2">
             <Link href="https://wa.me/" className="rounded-full border bg-white px-4 py-3 text-center font-semibold text-[#0b5a3d]">WhatsApp</Link>
             <Link href="/prebook-order" className="rounded-full bg-[#0b5a3d] px-4 py-3 text-center font-semibold text-white">Prebook Order</Link>

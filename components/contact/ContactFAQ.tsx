@@ -39,7 +39,7 @@ export default function ContactFAQ() {
           {faqs.map(({ question, answer }) => (
             <div
               key={question}
-              className="rounded-3xl border border-[#d9b45f]/30 bg-white p-8"
+              className="rounded-3xl border border-[#d9b45f]/30 bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-lg"
             >
               <h3 className="text-xl font-bold text-[#073d2b]">
                 {question}

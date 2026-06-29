@@ -18,7 +18,7 @@ export default function CartPage() {
       <main className="min-h-screen bg-[#f8f5ee] py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-[2fr_1fr]">
           <div className="space-y-6">
-            <h1 className="text-4xl font-bold text-[#073d2b]">
+            <h1 className="text-4xl font-bold tracking-tight text-[#073d2b]">
               Shopping Cart
             </h1>
 
@@ -37,7 +37,7 @@ export default function CartPage() {
   {items.length > 0 && (
     <button
       onClick={clearCart}
-      className="w-full rounded-full border border-red-500 py-3 font-semibold text-red-500 transition hover:bg-red-500 hover:text-white"
+      className="w-full rounded-full border border-red-500 py-3 font-semibold text-red-500 transition-all duration-300 hover:-translate-y-1 hover:bg-red-500 hover:text-white hover:shadow-lg"
     >
       Empty Cart
     </button>
