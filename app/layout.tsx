@@ -4,6 +4,8 @@ import { Toaster } from "sonner";
 import { site } from "@/lib/site";
 import "./globals.css";
 import BackToTop from "@/components/ui/BackToTop";
+import ScrollProgress from "@/components/ui/ScrollProgress";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,6 +21,9 @@ const siteUrl = "https://crowncoco.in";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  verification: {
+  google: "orkaRy1YZIFhxyVUz7WqE0EPhw4oKMAassUjfqzB6Lk",
+},
   title: {
     default: "CROWN COCO® | Fresh. Clean. Trusted.",
     template: "%s | CROWN COCO®",
@@ -108,7 +113,10 @@ export default function RootLayout({
     }}
   />
 
+<ScrollProgress />
 {children}
+
+<ScrollProgress />
 
 <BackToTop />
 
@@ -117,7 +125,48 @@ export default function RootLayout({
   richColors
   closeButton
 />
+
+<Script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-LJ5QZXCNTV"
+/>
+
+<Script id="google-analytics">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-LJ5QZXCNTV');
+  `}
+</Script>
+{children}
+
+<ScrollProgress />
+
+<BackToTop />
+
+<Toaster
+  position="bottom-right"
+  richColors
+  closeButton
+/>
+
+<Script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-LJ5QZXCNTV"
+/>
+
+<Script id="google-analytics">
+  ...
+</Script>
+
+<Script id="microsoft-clarity">
+  ...
+</Script>
+
 </body>
+
     </html>
   );
 }
