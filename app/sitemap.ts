@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { products } from "@/lib/products";
 
-const baseUrl = "https://crowncoco.in";
+const baseUrl = "https://crown-coco.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [

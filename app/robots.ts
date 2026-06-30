@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = "https://crowncoco.in";
+  const baseUrl = "https://crown-coco.vercel.app";
 
   return {
     rules: {
