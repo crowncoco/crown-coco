@@ -68,11 +68,16 @@ const cartCount = items.reduce(
 >
   <ShoppingCart className="h-5 w-5" />
 
-  {cartCount > 0 && (
-    <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#0b5a3d] text-[10px] font-bold text-white">
-      {cartCount}
-    </span>
-  )}
+ <span
+  suppressHydrationWarning
+  className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#0b5a3d] text-[10px] font-bold text-white"
+>
+  {cartCount > 0 ? cartCount : ""}
+</span>
+  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#0b5a3d] text-[10px] font-bold text-white">
+    {cartCount}
+  </span>
+
 </Link>
           <Link
   href={site.whatsapp}

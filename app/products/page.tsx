@@ -8,6 +8,8 @@ import Footer from "@/components/layout/Footer";
 import { useCart } from "@/lib/cart";
 import { products } from "@/lib/products";
 import type { Product } from "@/lib/products";
+import { toast } from "sonner";
+import { Share2 } from "lucide-react";
 
 const categories = [
   "All",
@@ -61,6 +63,16 @@ const filteredProducts = useMemo(() => {
     return matchesSearch && matchesCategory;
   });
 }, [search, selectedCategory]);
+const shareProduct = async (product: Product) => {
+  const url = `${window.location.origin}/products/${product.slug}`;
+
+  try {
+    await navigator.clipboard.writeText(url);
+    toast.success("Product link copied");
+  } catch {
+    toast.error("Unable to copy product link");
+  }
+};
   return (
     <main className="min-h-screen bg-[#f8f5ee]">
       <Navbar />
@@ -143,16 +155,26 @@ const filteredProducts = useMemo(() => {
                       View Details
                     </Link>
                     <button
+  type="button"
+  onClick={() => shareProduct(product)}
+  className="inline-flex items-center justify-center gap-2 rounded-full border border-[#d9b45f]/55 bg-white px-5 py-3 text-sm font-semibold text-[#073d2b] transition duration-300 hover:-translate-y-0.5 hover:bg-[#fffaf0]"
+>
+  <Share2 size={18} />
+  Share
+</button>
+                    <button
                       type="button"
-                      onClick={() =>
+                      onClick={() => {
   addItem({
-   slug: product.slug,
+    slug: product.slug,
     name: product.name,
     image: product.image ?? "",
     weight: product.weight,
     quantity: 1,
-  })
-}
+  });
+
+  toast.success(`${product.name} added to cart`);
+}}
                       className="inline-flex items-center justify-center rounded-full bg-[#0b5a3d] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(11,90,61,0.18)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#073d2b]"
                     >
                       Add to Cart
